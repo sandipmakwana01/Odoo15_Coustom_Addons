@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="school_view_form" model="ir.ui.view">
+            <field name="name">school view form</field>
+            <field name="model">school</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <notebook>
+                                <page string="Students Lines" >
+                                    <field name="students_ids"
+                                           widget="section_and_note_one2many"
+                                           mode="list,kanban">
+                                        <tree editable="bottom" string="Journal Items" default_order="id">
+                                            <control>
+                                                <create name="add_line_control" string="Add a line"/>
+                                                <create name="add_section_control" string="Add a section" context="{'default_display_type': 'line_section'}"/>
+                                                <create name="add_note_control" string="Add a note" context="{'default_display_type': 'line_note'}"/>
+                                            </control>
+                                            <field name="name" widget="section_and_note_text" optional="show"/>
+                                            <field name="display_type" force_save="1" column_invisible="True"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    <!--    School Action     -->
+    <record id="school_action" model="ir.actions.act_window">
+            <field name="name">School</field>
+            <field name="res_model">school</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a School
+                </p>
+            </field>
+    </record>
+
+</odoo>
